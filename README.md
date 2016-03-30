@@ -9,7 +9,7 @@ use. At the end this are useful scripts to make your life easier.
 | -r  | Replace the current filename to a number |
 | -rf  | Replace the current folder name to a number |
 
-##### <none>
+##### <>
 | before | after |
 |:-:|:-:|
 | 1.jpg  | 01.jpg  |
