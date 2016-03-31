@@ -1,20 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os, sys
+from os import path, listdir, system
+import sys
 
 def main(argv):
     if len(sys.argv) == 1:
         order()
-        sys.exit(2)
+        sys.exit()
 
     if argv[0] == "-r":
         replace()
-        sys.exit(2)
+        sys.exit()
 
     if argv[0] == "-rf":
         replaceFolder()
-        sys.exit(2)
+        sys.exit()
 
     if argv[0] == "-h":
         print '\t----------------------\n'
@@ -23,44 +24,51 @@ def main(argv):
         print '[]\t\tAdd 0 into filenames, only files named with number\n'
         print '-r\t\tReplace the current filename to a number\n'
         print '-rf\t\tReplace the current folder name to a number\n'
-        sys.exit(2)
+        sys.exit()
 
 def order():
     maxLength = 0
-    sufix = os.path.splitext(os.listdir(".")[0])[1].replace(".","")
+    sufixes = []
 
-    for i in os.listdir("."):
-        filename = os.path.splitext(i)[0]
+    for index, value in enumerate(listdir(".")):
+        filename = path.splitext(value)[0]
+        sufixes.append(path.splitext(listdir(".")[index])[1])
         if maxLength < len(filename):
             maxLength = len(filename)
 
-    prefix = "0" * (maxLength-1)
-    os.system("rename 'unless (/0+[0-9]{4}."+sufix+"/) {s/^([0-9]{1,3}\."+sufix+")$/"+prefix+"$1/g;s/0*([0-9]{4}\..*)/$1/}' *")
+    sufixes = list(set(sufixes))
+    prefix = "0" * (maxLength - 1)
+
+    for i in sufixes:
+        sufix = i.replace(".","")
+        system("rename 'unless (/0+[0-9]{4}."+sufix+"/) {s/^([0-9]{1,3}\."+sufix+")$/"+prefix+"$1/g;s/0*([0-9]{"+`maxLength`+"}\..*)/$1/}' *")
 
 def replace():
-    sufix = os.path.splitext(os.listdir(".")[0])[1]
     filenames = []
 
-    for i in os.listdir("."):
-        filenames.append(os.path.splitext(i)[0].replace(" ","\ "))
+    for i in listdir("."):
+        name = path.splitext(i)[0].replace(" ","\ ") + path.splitext(i)[1]
+        filenames.append(name)
 
     filenames.sort()
 
     for num in range(len(filenames)):
+        sufix = "." + filenames[num].split(".")[1]
+        filename = filenames[num].split(".")[0]
         prefix = "0" * (len(str(len(filenames))) - len(str(num)))
-        os.system("mv -vn "+filenames[num]+sufix+" "+prefix+`num`+sufix)
+        system("mv -vn "+filename+sufix+" "+prefix+`num`+sufix)
 
 def replaceFolder():
     folderNames = []
 
-    for i in os.listdir("."):
-        folderNames.append(os.path.split(i)[1].replace(" ","\ "))
+    for i in listdir("."):
+        folderNames.append(path.split(i)[1].replace(" ","\ "))
 
     folderNames.sort()
 
     for num in range(len(folderNames)):
         prefix = "0" * (len(str(len(folderNames))) - len(str(num)))
-        os.system("mv -vn "+folderNames[num]+" "+prefix+`num`)
+        system("mv -vn "+folderNames[num]+" "+prefix+`num`)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

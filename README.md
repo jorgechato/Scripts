@@ -26,3 +26,21 @@ use. At the end this are useful scripts to make your life easier.
 |:-:|:-:|
 | /git-folder | /0 |
 | /test-folder  | /1 |
+
+### Name.py
+| arguments  | description  |
+|:-:|:-:|
+| -b <old name> -a <new name> | Change part of the filename to another |
+| -r <old name> | Delete part of the filename |
+
+##### <-r test>
+| before | after |
+|:-:|:-:|
+| 1-test.jpg  | 1-.jpg  |
+| test15.pdf | 15.pdf  |
+
+##### <-b "hello world" -a github>
+| before | after |
+|:-:|:-:|
+| test hello world.md  | test github.md  |
+| hello world by jorge chato.mov | github by jorge chato.mov |
