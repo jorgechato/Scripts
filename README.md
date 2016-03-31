@@ -30,8 +30,8 @@ use. At the end this are useful scripts to make your life easier.
 ### Name.py
 | arguments  | description  |
 |:-:|:-:|
-| -b <old name> -a <new name> | Change part of the filename to another |
-| -r <old name> | Delete part of the filename |
+| -b [old name] -a [new name] | Change part of the filename to another |
+| -r [old name] | Delete part of the filename |
 
 ##### <-r test>
 | before | after |
