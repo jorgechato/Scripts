@@ -2,6 +2,9 @@
 In this repo I'm going to add my personal scripts, the ones I build and I
 use. At the end this are useful scripts to make your life easier.
 
++ [number.py](https://github.com/orggue/Scripts#numberpy)
++ [name.py](https://github.com/orggue/Scripts#namepy)
+
 ### Number.py
 | arguments  | description  |
 |:-:|:-:|
