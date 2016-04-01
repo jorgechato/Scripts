@@ -33,7 +33,7 @@ def main(argv):
 
 def changeFilename(before, after=""):
     for value in glob("*"+before+"*"):
-        filename = "".join(path.splitext(value)).replace(before, after)
+        filename = value.replace(before, after)
         system("mv -vn -- "+value+" "+filename)
     sys.exit()
 
