@@ -53,8 +53,9 @@ def replace():
     filenames.sort()
 
     for num in range(len(filenames)):
-        sufix = "." + filenames[num].split(".")[1]
-        filename = filenames[num].split(".")[0]
+        split = filenames[num].rsplit('.', 1)
+        sufix = "." + split[1]
+        filename = split[0]
         prefix = "0" * (len(str(len(filenames))) - len(str(num+1)))
         system("mv -vn "+filename+sufix+" "+prefix+`(num+1)`+sufix)
 
